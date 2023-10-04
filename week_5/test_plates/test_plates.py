@@ -1,37 +1,30 @@
 from plates import is_valid
 
-
-def main():
-    test_two_letters()
-    test_min_character()
-    test_max_character()
-    test_number_middle()
-    test_zero()
-    test_space()
-
-
 def test_two_letters():
-    assert value("cs50") == True
+    assert is_valid("cs") == True
+    assert is_valid("50") == False
+    assert is_valid("5C") == False
+    assert is_valid("0") == False
 
 
 def test_min_character():
-    assert value("cs") == True
+    assert is_valid("TO") == True
 
 
 def test_max_character():
-    assert value("cs5000") == True
+    assert is_valid("cs5000") == True
+    assert is_valid("CSTOPP") == True
+    assert is_valid("CSTOPPP") == False
 
 
-def test_number_middle():
-    assert value("cs50cs") == False
+def test_number():
+    assert is_valid("cs50cs") == False
+    assert is_valid("cscs50") == True
+    assert is_valid("csc050") == False
 
 
-def test_zero():
-    assert value("0cs50") == False
-
-
-def test_space():
-    assert value("Hi, CS50") == False
+def test_punctuation():
+    assert is_valid("TEST!") == False
 
 
 if __name__ == "main":
